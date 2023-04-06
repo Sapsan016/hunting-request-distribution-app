@@ -1,41 +1,36 @@
-package ru.gorbunov.model.dto;
+package ru.gorbunov.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import ru.gorbunov.model.Resource;
 
 import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AddRequestDto {
+public class AddResourceDto {
 
     @NotNull
-    String surname;
+    String region;
 
     @NotNull
     String name;
 
     @NotNull
-    String middleName;
+    Long quantity;
 
     @NotNull
-    String type;
+    LocalDate start;
 
     @NotNull
-    Long ticketSerialNumber;
+    LocalDate end;
 
     @NotNull
-    Long ticketNumber;
-
-    @NotNull
-    Long resourceId;
+    Long quote;
 }

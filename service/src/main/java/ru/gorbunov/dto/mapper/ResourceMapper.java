@@ -1,8 +1,9 @@
-package ru.gorbunov.model.dto.mapper;
+package ru.gorbunov.dto.mapper;
 
+import ru.gorbunov.dto.AddResourceDto;
 import ru.gorbunov.model.Resource;
-import ru.gorbunov.model.dto.AddResourceDto;
-import ru.gorbunov.model.dto.ResourceDto;
+import ru.gorbunov.dto.ResourceDto;
+import ru.gorbunov.model.ResourceStatus;
 
 public class ResourceMapper {
     public static Resource toResource(AddResourceDto addResourceDto) {
@@ -11,7 +12,7 @@ public class ResourceMapper {
                 addResourceDto.getRegion(),
                 addResourceDto.getName(),
                 addResourceDto.getQuantity(),
-                addResourceDto.getStatus(),
+                ResourceStatus.NEW,
                 addResourceDto.getStart(),
                 addResourceDto.getEnd(),
                 addResourceDto.getQuote()

@@ -1,9 +1,10 @@
-package ru.gorbunov.model.dto;
+package ru.gorbunov.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
+import ru.gorbunov.model.ResourceStatus;
 
 import java.time.LocalDate;
 
@@ -19,7 +20,7 @@ public class ResourceDto {
 
     Long quantity;
 
-    String status;
+    ResourceStatus status;
 
     LocalDate start;
 

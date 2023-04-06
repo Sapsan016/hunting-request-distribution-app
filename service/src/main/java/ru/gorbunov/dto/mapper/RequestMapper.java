@@ -1,8 +1,8 @@
-package ru.gorbunov.model.dto.mapper;
+package ru.gorbunov.dto.mapper;
 
+import ru.gorbunov.dto.AddRequestDto;
+import ru.gorbunov.dto.RequestDto;
 import ru.gorbunov.model.Request;
-import ru.gorbunov.model.dto.AddRequestDto;
-import ru.gorbunov.model.dto.RequestDto;
 
 public class RequestMapper {
     public static Request toRequest(AddRequestDto addRequestDto) {

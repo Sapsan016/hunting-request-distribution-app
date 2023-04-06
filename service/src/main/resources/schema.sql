@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS requests
     ticket_serial_number  BIGINT                                  NOT NULL,
     ticket_number         BIGINT                                  NOT NULL,
     resource_id           BIGINT                                  NOT NULL,
+    request_status        VARCHAR(20)                             NOT NULL,
     CONSTRAINT pk_requests PRIMARY KEY (request_id),
     FOREIGN KEY (resource_id)
         REFERENCES resources (resource_id) ON DELETE CASCADE

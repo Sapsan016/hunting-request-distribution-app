@@ -40,4 +40,9 @@ public class Request {
     @ManyToOne
     Resource resource;
 
+    @Column(name = "request_status")
+    RequestStatus status;
+
+
+
 }
