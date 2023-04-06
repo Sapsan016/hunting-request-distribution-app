@@ -3,6 +3,9 @@ package ru.gorbunov.dto.mapper;
 import ru.gorbunov.dto.AddRequestDto;
 import ru.gorbunov.dto.RequestDto;
 import ru.gorbunov.model.Request;
+import ru.gorbunov.model.RequestStatus;
+
+import java.time.LocalDateTime;
 
 public class RequestMapper {
     public static Request toRequest(AddRequestDto addRequestDto) {
@@ -14,7 +17,9 @@ public class RequestMapper {
                 addRequestDto.getType(),
                 addRequestDto.getTicketSerialNumber(),
                 addRequestDto.getTicketNumber(),
-                null
+                null,
+                RequestStatus.PENDING,
+                LocalDateTime.now()
         );
     }
 

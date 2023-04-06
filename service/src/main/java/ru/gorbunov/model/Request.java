@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -42,6 +43,8 @@ public class Request {
 
     @Column(name = "request_status")
     RequestStatus status;
+
+    LocalDateTime created;
 
 
 
