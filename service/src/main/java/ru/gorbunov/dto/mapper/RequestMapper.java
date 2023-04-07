@@ -14,11 +14,11 @@ public class RequestMapper {
                 addRequestDto.getSurname(),
                 addRequestDto.getName(),
                 addRequestDto.getMiddleName(),
-                addRequestDto.getType(),
+                addRequestDto.getType().toString(),
                 addRequestDto.getTicketSerialNumber(),
                 addRequestDto.getTicketNumber(),
                 null,
-                RequestStatus.PENDING,
+                RequestStatus.PENDING.toString(),
                 LocalDateTime.now()
         );
     }
@@ -32,7 +32,9 @@ public class RequestMapper {
                 request.getType(),
                 request.getTicketSerialNumber(),
                 request.getTicketNumber(),
-                request.getResource()
+                request.getResource(),
+                request.getStatus(),
+                request.getCreated()
         );
     }
 }

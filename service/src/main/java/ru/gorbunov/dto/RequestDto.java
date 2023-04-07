@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import ru.gorbunov.model.Resource;
 
+import java.time.LocalDateTime;
+
 
 @Data
 @AllArgsConstructor
@@ -27,4 +29,8 @@ public class RequestDto {
     Long ticketNumber;
 
     Resource resource;
+
+    String status;
+
+    LocalDateTime created;
 }

@@ -34,8 +34,6 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public Resource getResourceById(Long resourceId) {
-
-
         return resourceRepository.findById(resourceId).orElseThrow(() ->
                 new ObjectNotFoundException(String.format("Resource with ID=%s was not found", resourceId)));
     }
@@ -43,11 +41,7 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public List<Resource> getResources(Long[] ids, Integer from, Integer size, String status) {
         if (ids.length == 0) {
-            if (status.equals("OPEN")) {
-                log.info("Looking for all resources with status: {}, skip: {}, size: {}", status, from, size);
-                return resourceRepository.getAllResourcesWithStatusFromSize(status, from, size);
-            }
-            if (status.equals("CLOSED")) {
+            if (!status.isBlank()) {
                 log.info("Looking for all resources with status: {}, skip: {}, size: {}", status, from, size);
                 return resourceRepository.getAllResourcesWithStatusFromSize(status, from, size);
             }

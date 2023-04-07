@@ -5,11 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import ru.gorbunov.model.Resource;
+import ru.gorbunov.model.RequestType;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -28,7 +25,7 @@ public class AddRequestDto {
     String middleName;
 
     @NotNull
-    String type;
+    RequestType type;
 
     @NotNull
     Long ticketSerialNumber;
