@@ -28,7 +28,7 @@ public class Resource {
     Long quantity;
 
     @Column(name = "resource_status")
-    ResourceStatus status;
+    String status;
 
     @Column(name = "start_date")
     LocalDate start;

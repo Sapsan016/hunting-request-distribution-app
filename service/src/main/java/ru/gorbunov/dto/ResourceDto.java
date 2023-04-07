@@ -20,7 +20,7 @@ public class ResourceDto {
 
     Long quantity;
 
-    ResourceStatus status;
+    String status;
 
     LocalDate start;
 
