@@ -53,6 +53,20 @@ public class ResourceController {
                 .collect(Collectors.toList());
     }
 
+    @PatchMapping("/{resourceId}")
+    public ResourceDto updateResource(@RequestBody AddResourceDto addResourceDto,
+                                      @PathVariable Long resourceId) {
+        log.info("ResourceController: Update with ID = {}, new data: {}", resourceId, addResourceDto.toString());
+        return ResourceMapper.toDto(service.updateResource(resourceId, addResourceDto));
+    }
+
+    @DeleteMapping("/{resourceId}")
+    public void removeResource(@PathVariable Long resourceId) {
+        log.info("ResourceController: Remove resource with ID = {}", resourceId);
+        service.removeResource(resourceId);
+    }
+
+
 
 
 }

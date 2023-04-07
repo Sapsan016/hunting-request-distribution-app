@@ -12,7 +12,7 @@ public class ResourceMapper {
                 addResourceDto.getRegion(),
                 addResourceDto.getName(),
                 addResourceDto.getQuantity(),
-                ResourceStatus.OPEN.toString(),
+                addResourceDto.getStatus().toString(),
                 addResourceDto.getStart(),
                 addResourceDto.getEnd(),
                 addResourceDto.getQuote()

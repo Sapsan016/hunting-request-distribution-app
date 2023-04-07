@@ -55,15 +55,51 @@ public class ResourceServiceImpl implements ResourceService {
             return resourceRepository.getAllResourcesFromSize(from, size);
         }
         if (status.isBlank()) {
+            log.info("Looking for resources with Ids: {}, skip: {}, size: {}", Arrays.toString(ids), from, size);
             return Arrays.stream(ids).map(this::getResourceById)
                     .skip(from)
                     .limit(size)
                     .collect(Collectors.toList());
         }
+        log.info("Looking for resources with Ids: {}, status: {}, skip: {}, size: {}", Arrays.toString(ids),
+                status, from, size);
         return Arrays.stream(ids).map(this::getResourceById)
                 .filter(resource -> resource.getStatus().equals(status))
                 .skip(from)
                 .limit(size)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Resource updateResource(Long resourceId, AddResourceDto addResourceDto) {
+        Resource resourceToUpdate = getResourceById(resourceId);
+        checkUpdate(resourceToUpdate, addResourceDto);
+        resourceRepository.save(resourceToUpdate);
+        log.info("Updated resource ID = {}", resourceId);
+        return resourceToUpdate;
+    }
+
+    @Override
+    public void removeResource(Long resourceId) {
+        Resource resourceToRemove = getResourceById(resourceId);
+        resourceRepository.delete(resourceToRemove);
+        log.info("Removed resource ID = {}", resourceId);
+    }
+
+    private void checkUpdate(Resource resourceToUpdate, AddResourceDto addResourceDto) {
+        if (addResourceDto.getRegion() != null)
+            resourceToUpdate.setRegion(addResourceDto.getRegion());
+        if (addResourceDto.getName() != null)
+            resourceToUpdate.setName(addResourceDto.getName());
+        if (addResourceDto.getQuantity() != null)
+            resourceToUpdate.setQuantity(addResourceDto.getQuantity());
+        if (addResourceDto.getStatus() != null)
+            resourceToUpdate.setStatus(addResourceDto.getStatus().toString());
+        if (addResourceDto.getStart() != null)
+            resourceToUpdate.setStart(addResourceDto.getStart());
+        if (addResourceDto.getEnd() != null)
+            resourceToUpdate.setEnd(addResourceDto.getEnd());
+        if (addResourceDto.getQuote() != null)
+            resourceToUpdate.setQuote(addResourceDto.getQuote());
     }
 }

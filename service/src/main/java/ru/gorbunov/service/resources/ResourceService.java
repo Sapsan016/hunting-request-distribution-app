@@ -11,4 +11,8 @@ public interface ResourceService {
     Resource getResourceById(Long resourceId);
 
     List<Resource> getResources(Long[] ids, Integer from, Integer size, String status);
+
+    Resource updateResource(Long resourceId, AddResourceDto addResourceDto);
+
+    void removeResource(Long resourceId);
 }
