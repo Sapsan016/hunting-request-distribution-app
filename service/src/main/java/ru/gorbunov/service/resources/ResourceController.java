@@ -40,7 +40,7 @@ public class ResourceController {
     }
 
     @GetMapping
-    public List<ResourceDto> getUsers(@RequestParam(required = false, defaultValue = "") Long[] ids,
+    public List<ResourceDto> getResources(@RequestParam(required = false, defaultValue = "") Long[] ids,
                                   @RequestParam(defaultValue = "0") Integer from,
                                   @RequestParam(defaultValue = "10") Integer size,
                                   @RequestParam(defaultValue = "") String status) {

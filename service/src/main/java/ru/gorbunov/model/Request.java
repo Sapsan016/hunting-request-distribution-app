@@ -42,10 +42,8 @@ public class Request {
     Resource resource;
 
     @Column(name = "request_status")
-    RequestStatus status;
+    String status;
 
     LocalDateTime created;
-
-
 
 }
