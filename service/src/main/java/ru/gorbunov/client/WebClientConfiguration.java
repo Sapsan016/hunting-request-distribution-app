@@ -14,7 +14,7 @@ public class WebClientConfiguration {
 
 
     @Bean
-    public WebClient webClientWithTimeout() {
+    public WebClient webClient() {
         return WebClient.builder()
                 .baseUrl(BASE_URL)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
