@@ -17,10 +17,11 @@
         </dependency>
         <dependency>
             <groupId>ru.gorbunov</groupId>
-            <artifactId>service</artifactId>
+            <artifactId>checkService</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
     </dependencies>
 
     <properties>

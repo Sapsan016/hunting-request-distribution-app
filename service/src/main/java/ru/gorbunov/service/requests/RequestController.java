@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import ru.gorbunov.client.CheckClient;
 import ru.gorbunov.dto.AddRequestDto;
 import ru.gorbunov.dto.RequestDto;
 import ru.gorbunov.dto.mapper.RequestMapper;
@@ -22,8 +23,13 @@ public class RequestController {
 
     RequestService service;
 
-    public RequestController(RequestService service) {
+    CheckClient client;
+
+
+
+    public RequestController(RequestService service, CheckClient client) {
         this.service = service;
+        this.client = client;
     }
 
     @PostMapping
@@ -65,4 +71,11 @@ public class RequestController {
         log.info("RequestController: Remove request with ID = {}", requestId);
         service.removeRequest(requestId);
     }
+
+    @GetMapping("/start")
+    public void startChecks() {
+        client.checkRequest(getRequests(new Long[] {}, 0, Integer.MAX_VALUE, ""));
+
+    }
+
 }
