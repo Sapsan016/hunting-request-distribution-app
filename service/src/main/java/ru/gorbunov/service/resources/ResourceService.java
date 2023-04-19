@@ -1,6 +1,7 @@
 package ru.gorbunov.service.resources;
 
 import ru.gorbunov.dto.AddResourceDto;
+import ru.gorbunov.dto.ResourceDto;
 import ru.gorbunov.model.Resource;
 
 import java.util.List;
@@ -15,4 +16,5 @@ public interface ResourceService {
     Resource updateResource(Long resourceId, AddResourceDto addResourceDto);
 
     void removeResource(Long resourceId);
+
 }

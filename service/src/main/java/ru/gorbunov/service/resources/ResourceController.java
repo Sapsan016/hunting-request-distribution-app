@@ -56,7 +56,7 @@ public class ResourceController {
     @PatchMapping("/{resourceId}")
     public ResourceDto updateResource(@RequestBody AddResourceDto addResourceDto,
                                       @PathVariable Long resourceId) {
-        log.info("ResourceController: Update with ID = {}, new data: {}", resourceId, addResourceDto.toString());
+        log.info("ResourceController: Update resource with ID = {}, new data: {}", resourceId, addResourceDto.toString());
         return ResourceMapper.toDto(service.updateResource(resourceId, addResourceDto));
     }
 
@@ -65,8 +65,12 @@ public class ResourceController {
         log.info("ResourceController: Remove resource with ID = {}", resourceId);
         service.removeResource(resourceId);
     }
-
-
-
+    @PatchMapping("/check/{resourceId}")
+    public ResourceDto updateCheckResource(@RequestBody ResourceDto resourceDto,
+                                      @PathVariable Long resourceId) {
+        log.info("ResourceController: Update resource with ID = {}, new data: {}", resourceId, resourceDto.toString());
+        AddResourceDto addResourceDto = ResourceMapper.toAddDto(resourceDto);
+        return ResourceMapper.toDto(service.updateResource(resourceId, addResourceDto));
+    }
 
 }

@@ -30,7 +30,7 @@ public class CheckController {
         log.info("CheckController: Starting checks");
         List<RequestDto> requestDtoList = client.getRequest().collectList().block();
         RequestDto request = requestDtoList.get(0);
-        ResourceDto resource = client.getResource(request.getId());
+        ResourceDto resource = client.getResource(request.getResource().getId());
 
       return check(request, resource);
 

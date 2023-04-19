@@ -4,30 +4,42 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import ru.gorbunov.client.CheckClient;
 import ru.gorbunov.dto.RequestDto;
 import ru.gorbunov.dto.ResourceDto;
-
-import java.util.List;
+import ru.gorbunov.dto.mapper.ResourceMapper;
+import ru.gorbunov.model.RequestStatus;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
 public class CheckServiceImpl implements CheckService {
-    @Override
-    public List<RequestDto> checkRequests(List<RequestDto> requestDtoList) {
-        log.info("CheckService: Checking requests with IDs = {} ", requestDtoList.toString());
-     //  requestDtoList.forEach(System.out::println);
 
+    CheckClient client;
 
-
-        return requestDtoList;
+    public CheckServiceImpl(CheckClient client) {
+        this.client = client;
     }
+
 
     @Override
     public RequestDto checkRequest(RequestDto request, ResourceDto resource) {
-
         log.info("CheckService: Checking request with ID = {} to resource with Id = {}", request.getId(),
                 resource.getId());
+        if (request.getQuantity() <= resource.getQuote() &&
+                request.getCreated().isAfter(resource.getStart().atStartOfDay()) &&
+                request.getCreated().isBefore(resource.getEnd().atStartOfDay())) {
+            request.setStatus(String.valueOf(RequestStatus.ACCEPTED));
+            resource.setQuote(resource.getQuote() - request.getQuantity());
+            client.updateResource(resource);
+            request.setResource(ResourceMapper.toResourceFromDto(resource));
+            //add save updated request
+
+            //add data to resource requesters
+            return request;
+        }
+        request.setStatus(String.valueOf(RequestStatus.DECLINED));
+
 
         return request;
     }

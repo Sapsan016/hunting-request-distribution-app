@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.gorbunov.dto.AddResourceDto;
+import ru.gorbunov.dto.ResourceDto;
 import ru.gorbunov.dto.mapper.ResourceMapper;
 import ru.gorbunov.model.Resource;
 import ru.gorbunov.service.exception.ObjectNotFoundException;
