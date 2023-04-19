@@ -28,3 +28,12 @@ CREATE TABLE IF NOT EXISTS requests
         REFERENCES resources (resource_id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS resource_requesters
+(
+    resource_id          BIGINT        NOT NULL,
+    ticket_serial_number BIGINT UNIQUE NOT NULL,
+    ticket_number        BIGINT        NOT NULL,
+        FOREIGN KEY (resource_id)
+        REFERENCES resources (resource_id) ON DELETE CASCADE
+);
+

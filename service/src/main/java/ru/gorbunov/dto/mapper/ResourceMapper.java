@@ -29,6 +29,30 @@ public class ResourceMapper {
                 resource.getQuote()
         );
     }
+
+    public static AddResourceDto toAddDto(ResourceDto resourceDto) {
+        return new AddResourceDto(
+                resourceDto.getRegion(),
+                resourceDto.getName(),
+                ResourceStatus.valueOf(resourceDto.getStatus()),
+                resourceDto.getStart(),
+                resourceDto.getEnd(),
+                resourceDto.getQuote()
+        );
+    }
+
+
+    public static Resource toResourceFromDto(ResourceDto resourceDto) {
+        return new Resource(
+                resourceDto.getId(),
+                resourceDto.getRegion(),
+                resourceDto.getName(),
+                resourceDto.getStatus(),
+                resourceDto.getStart(),
+                resourceDto.getEnd(),
+                resourceDto.getQuote()
+        );
+    }
 }
 
 
