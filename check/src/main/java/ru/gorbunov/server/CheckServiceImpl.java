@@ -14,11 +14,19 @@ import java.util.List;
 public class CheckServiceImpl implements CheckService {
     @Override
     public List<RequestDto> checkRequests(List<RequestDto> requestDtoList) {
-
-       requestDtoList.forEach(System.out::println);
+        log.info("CheckService: Checking requests with IDs = {} ", requestDtoList.toString());
+     //  requestDtoList.forEach(System.out::println);
 
 
 
         return requestDtoList;
+    }
+
+    @Override
+    public RequestDto checkRequest(RequestDto requestDto) {
+
+        log.info("CheckService: Checking requests with IDs = {} ", requestDto.getId());
+
+        return requestDto;
     }
 }
