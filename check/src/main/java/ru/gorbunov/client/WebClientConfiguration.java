@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfiguration {
   //  private static final String BASE_URL = "http://stats-server:9090";
-   private static final String BASE_URL = "http://localhost:9090";
+   private static final String BASE_URL = "http://localhost:8080";
 
 
     @Bean
