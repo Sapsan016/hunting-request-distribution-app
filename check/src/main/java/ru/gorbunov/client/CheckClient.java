@@ -11,7 +11,6 @@ import ru.gorbunov.dto.ResourceDto;
 public class CheckClient {
     private final WebClient webClient;
 
-
     public CheckClient(WebClient webClient) {
         this.webClient = webClient;
     }

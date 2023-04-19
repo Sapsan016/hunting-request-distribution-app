@@ -26,13 +26,13 @@ public class CheckController {
     }
 
     @GetMapping("/start")
-    public void startChecks() {
+    public RequestDto startChecks() {
         log.info("CheckController: Starting checks");
         List<RequestDto> requestDtoList = client.getRequest().collectList().block();
         RequestDto request = requestDtoList.get(0);
         ResourceDto resource = client.getResource(request.getId());
 
-       check(request, resource);
+      return check(request, resource);
 
     }
 

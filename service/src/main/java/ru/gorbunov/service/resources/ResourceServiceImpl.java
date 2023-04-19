@@ -85,8 +85,6 @@ public class ResourceServiceImpl implements ResourceService {
             resourceToUpdate.setRegion(addResourceDto.getRegion());
         if (addResourceDto.getName() != null)
             resourceToUpdate.setName(addResourceDto.getName());
-        if (addResourceDto.getQuantity() != null)
-            resourceToUpdate.setQuantity(addResourceDto.getQuantity());
         if (addResourceDto.getStatus() != null)
             resourceToUpdate.setStatus(addResourceDto.getStatus().toString());
         if (addResourceDto.getStart() != null)

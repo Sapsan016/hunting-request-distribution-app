@@ -24,8 +24,6 @@ public class AddResourceDto {
     @NotNull
     String name;
 
-    @NotNull
-    Long quantity;
 
     @NotNull
     ResourceStatus status;
@@ -41,5 +39,5 @@ public class AddResourceDto {
     LocalDate end;
 
     @NotNull
-    Long quote;
+    Integer quote;
 }

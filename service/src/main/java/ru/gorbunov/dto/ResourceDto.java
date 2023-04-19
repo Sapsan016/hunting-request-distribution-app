@@ -19,14 +19,12 @@ public class ResourceDto {
 
     String name;
 
-    Long quantity;
-
     String status;
 
     LocalDate start;
 
     LocalDate end;
 
-    Long quote;
+    int quote;
 
 }

@@ -32,6 +32,8 @@ public class RequestDto {
 
     Resource resource;
 
+    int quantity;
+
     String status;
 
     LocalDateTime created;
