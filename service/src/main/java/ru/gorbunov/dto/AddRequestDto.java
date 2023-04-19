@@ -35,4 +35,7 @@ public class AddRequestDto {
 
     @NotNull
     Long resourceId;
+
+    @NotNull
+    Integer quantity;
 }

@@ -18,6 +18,7 @@ public class RequestMapper {
                 addRequestDto.getTicketSerialNumber(),
                 addRequestDto.getTicketNumber(),
                 null,
+                addRequestDto.getQuantity(),
                 RequestStatus.PENDING.toString(),
                 LocalDateTime.now()
         );
@@ -33,6 +34,7 @@ public class RequestMapper {
                 request.getTicketSerialNumber(),
                 request.getTicketNumber(),
                 request.getResource(),
+                request.getQuantity(),
                 request.getStatus(),
                 request.getCreated()
         );

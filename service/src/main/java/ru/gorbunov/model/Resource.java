@@ -25,8 +25,6 @@ public class Resource {
     @Column(name = "resource_name")
     String name;
 
-    Long quantity;
-
     @Column(name = "resource_status")
     String status;
 
@@ -37,7 +35,7 @@ public class Resource {
     LocalDate end;
 
     @Column(name = "resource_quote")
-    Long quote;
+    int quote;
 
 
 }

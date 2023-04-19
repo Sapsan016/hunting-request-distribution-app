@@ -41,6 +41,8 @@ public class Request {
     @ManyToOne
     Resource resource;
 
+    int quantity;
+
     @Column(name = "request_status")
     String status;
 

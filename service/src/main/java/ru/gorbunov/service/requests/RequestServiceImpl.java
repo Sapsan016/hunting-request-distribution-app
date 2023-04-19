@@ -100,6 +100,8 @@ public class RequestServiceImpl implements RequestService {
             requestToUpdate.setTicketSerialNumber(addRequestDto.getTicketSerialNumber());
         if (addRequestDto.getTicketNumber() != null)
             requestToUpdate.setTicketNumber(addRequestDto.getTicketNumber());
+        if (addRequestDto.getQuantity() != null)
+            requestToUpdate.setQuantity(addRequestDto.getQuantity());
     }
 
 }

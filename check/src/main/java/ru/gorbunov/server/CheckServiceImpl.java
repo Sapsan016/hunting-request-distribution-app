@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.gorbunov.dto.RequestDto;
+import ru.gorbunov.dto.ResourceDto;
 
 import java.util.List;
 
@@ -23,10 +24,11 @@ public class CheckServiceImpl implements CheckService {
     }
 
     @Override
-    public RequestDto checkRequest(RequestDto requestDto) {
+    public RequestDto checkRequest(RequestDto request, ResourceDto resource) {
 
-        log.info("CheckService: Checking requests with IDs = {} ", requestDto.getId());
+        log.info("CheckService: Checking request with ID = {} to resource with Id = {}", request.getId(),
+                resource.getId());
 
-        return requestDto;
+        return request;
     }
 }
