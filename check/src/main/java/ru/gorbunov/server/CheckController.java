@@ -4,9 +4,9 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
 import ru.gorbunov.client.CheckClient;
 import ru.gorbunov.dto.RequestDto;
+import ru.gorbunov.dto.ResourceDto;
 
 import java.util.List;
 
@@ -28,7 +28,11 @@ public class CheckController {
     @GetMapping("/start")
     public void startChecks() {
         log.info("CheckController: Starting checks");
-       check(client.getRequest());
+        List<RequestDto> requestDtoList = client.getRequest().collectList().block();
+        RequestDto request = requestDtoList.get(0);
+        ResourceDto resource = client.getResource(request.getId());
+
+       check(request, resource);
 
     }
 
@@ -39,9 +43,9 @@ public class CheckController {
 //    }
 
     @PatchMapping
-    public RequestDto check(@RequestBody RequestDto requestDtoMono) {
-        log.info("CheckController: Request to check request: {} ", requestDtoMono.toString());
-        return service.checkRequest(requestDtoMono);
+    public RequestDto check(@RequestBody RequestDto request, ResourceDto resource) {
+        log.info("CheckController: Request to check request: {} to resource: {}", request, resource);
+        return service.checkRequest(request, resource);
     }
 
 
