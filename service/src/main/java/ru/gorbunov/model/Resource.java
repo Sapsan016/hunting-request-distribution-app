@@ -25,9 +25,6 @@ public class Resource {
     @Column(name = "resource_name")
     String name;
 
-    @Column(name = "resource_status")
-    String status;
-
     @Column(name = "start_date")
     LocalDate start;
 

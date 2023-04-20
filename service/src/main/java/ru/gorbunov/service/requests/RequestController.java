@@ -22,13 +22,8 @@ public class RequestController {
 
     RequestService service;
 
-  //  CheckClient client;
-
-
-
     public RequestController(RequestService service) {
         this.service = service;
-    //    this.client = client;
     }
 
     @PostMapping

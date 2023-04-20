@@ -5,7 +5,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.gorbunov.dto.AddResourceDto;
-import ru.gorbunov.dto.ResourceDto;
 import ru.gorbunov.dto.mapper.ResourceMapper;
 import ru.gorbunov.model.Resource;
 import ru.gorbunov.service.exception.ObjectNotFoundException;
@@ -40,30 +39,18 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public List<Resource> getResources(Long[] ids, Integer from, Integer size, String status) {
+    public List<Resource> getResources(Long[] ids, Integer from, Integer size) {
         if (ids.length == 0) {
-            if (!status.isBlank()) {
-                log.info("Looking for all resources with status: {}, skip: {}, size: {}", status, from, size);
-                return resourceRepository.getAllResourcesWithStatusFromSize(status, from, size);
-            }
             log.info("Looking for all resources, skip: {}, size: {}", from, size);
             return resourceRepository.getAllResourcesFromSize(from, size);
-        }
-        if (status.isBlank()) {
+            }
+
             log.info("Looking for resources with Ids: {}, skip: {}, size: {}", Arrays.toString(ids), from, size);
             return Arrays.stream(ids).map(this::getResourceById)
                     .skip(from)
                     .limit(size)
                     .collect(Collectors.toList());
         }
-        log.info("Looking for resources with Ids: {}, status: {}, skip: {}, size: {}", Arrays.toString(ids),
-                status, from, size);
-        return Arrays.stream(ids).map(this::getResourceById)
-                .filter(resource -> resource.getStatus().equals(status))
-                .skip(from)
-                .limit(size)
-                .collect(Collectors.toList());
-    }
 
     @Override
     public Resource updateResource(Long resourceId, AddResourceDto addResourceDto) {
@@ -86,8 +73,6 @@ public class ResourceServiceImpl implements ResourceService {
             resourceToUpdate.setRegion(addResourceDto.getRegion());
         if (addResourceDto.getName() != null)
             resourceToUpdate.setName(addResourceDto.getName());
-        if (addResourceDto.getStatus() != null)
-            resourceToUpdate.setStatus(addResourceDto.getStatus().toString());
         if (addResourceDto.getStart() != null)
             resourceToUpdate.setStart(addResourceDto.getStart());
         if (addResourceDto.getEnd() != null)

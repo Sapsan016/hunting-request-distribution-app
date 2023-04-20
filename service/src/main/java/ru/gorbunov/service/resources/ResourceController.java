@@ -22,8 +22,11 @@ public class ResourceController {
 
     ResourceService service;
 
-    public ResourceController(ResourceService service) {
+    RequestersDAO requestersDAO;
+
+    public ResourceController(ResourceService service, RequestersDAO requestersDAO) {
         this.service = service;
+        this.requestersDAO = requestersDAO;
     }
 
     @PostMapping
@@ -42,12 +45,11 @@ public class ResourceController {
     @GetMapping
     public List<ResourceDto> getResources(@RequestParam(required = false, defaultValue = "") Long[] ids,
                                   @RequestParam(defaultValue = "0") Integer from,
-                                  @RequestParam(defaultValue = "10") Integer size,
-                                  @RequestParam(defaultValue = "") String status) {
-        log.info("ResourceController: Get resources with IDs : {}, skip: {}, list size: {}, status: {}",
-                Arrays.toString(ids), from, size, status);
+                                  @RequestParam(defaultValue = "10") Integer size) {
+        log.info("ResourceController: Get resources with IDs : {}, skip: {}, list size: {}",
+                Arrays.toString(ids), from, size);
 
-        return service.getResources(ids, from, size, status)
+        return service.getResources(ids, from, size)
                 .stream()
                 .map(ResourceMapper::toDto)
                 .collect(Collectors.toList());
@@ -72,6 +74,15 @@ public class ResourceController {
                 resourceId, resourceDto.toString());
         AddResourceDto addResourceDto = ResourceMapper.toAddDto(resourceDto);
         return ResourceMapper.toDto(service.updateResource(resourceId, addResourceDto));
+    }
+
+    @PostMapping("/requester/{resourceId}")
+    public void addRequester(@PathVariable Long resourceId,
+                             @RequestParam Long ticketSerialNumber,
+                             @RequestParam Long ticketNumber) {
+        log.info("ResourceController: Adding requester to resource with ID = {}", resourceId);
+        requestersDAO.addNewRequester(resourceId, ticketSerialNumber, ticketNumber);
+
     }
 
 }

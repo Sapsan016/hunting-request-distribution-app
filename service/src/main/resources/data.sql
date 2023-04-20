@@ -1,30 +1,31 @@
 delete from resources;
 delete from requests;
+delete from resource_requesters;
 
 ALTER TABLE resources ALTER COLUMN resource_id RESTART WITH 1;
 ALTER TABLE requests ALTER COLUMN request_id RESTART WITH 1;
 
 
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('China', 'Cat, miner''s', 'OPEN', '2023-04-22', '2023-06-08', 19);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Japan', 'Grey mouse lemur,', 'OPEN', '2023-11-19', '2024-05-11', 32);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Poland', 'South African hedgehog', 'OPEN', '2023-04-26', '2023-12-29', 42);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Russia', 'Bear, polar', 'OPEN', '2023-05-17', '2023-07-29', 35);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Mexico', 'Shrike, common boubou', 'OPEN', '2023-04-13', '2022-06-30', 20);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Portugal', 'Grey mouse lemur', 'OPEN', '2023-05-11', '2023-11-09', 56);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Serbia', 'Bear, polar', 'OPEN', '2023-07-03', '2023-10-27', 37);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('China', 'Eagle, bald', 'OPEN', '2023-04-09', '2023-07-22', 63);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Kenya', 'Puku', 'OPEN', '2023-05-27', '2023-11-28', 16);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Ukraine', 'Emerald green tree boa', 'OPEN', '2023-04-13', '2023-09-09', 14);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('China', 'Asian openbill', 'OPEN', '2023-06-25', '2023-12-01', 63);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('United States', 'Vulture, king', 'OPEN', '2023-04-09', '2023-12-03', 37);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('China', 'Lion, mountain', 'OPEN', '2023-05-28', '2023-10-24', 22);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Belarus', 'Bear, polar', 'OPEN', '2023-07-13', '2023-12-02', 23);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Portugal', 'Lion, mountain', 'OPEN', '2023-07-13', '2023-12-25', 33);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('China', 'Lynx, african', 'OPEN', '2023-05-14', '2023-07-04', 45);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Greece', 'Blue catfish', 'OPEN', '2023-04-06', '2023-10-20', 12);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('United States', 'Grey mouse lemur', 'OPEN', '2023-05-12', '2023-08-27', 13);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('China', 'Lion, mountain', 'OPEN', '2023-04-18', '2023-09-01', 33);
-insert into resources (region, resource_name, resource_status, start_date, end_date, resource_quote) values ('Sweden', 'Bear, polar', 'OPEN', '2023-08-04', '2023-10-04', 44);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('China', 'Cat, miner''s', '2023-04-22', '2023-06-08', 19);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Japan', 'Grey mouse lemur,', '2023-11-19', '2024-05-11', 32);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Poland', 'South African hedgehog', '2023-04-26', '2023-12-29', 42);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Russia', 'Bear, polar', '2023-05-17', '2023-07-29', 35);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Mexico', 'Shrike, common boubou', '2023-04-13', '2022-06-30', 20);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Portugal', 'Grey mouse lemur', '2023-05-11', '2023-11-09', 56);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Serbia', 'Bear, polar', '2023-07-03', '2023-10-27', 37);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('China', 'Eagle, bald', '2023-04-09', '2023-07-22', 63);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Kenya', 'Puku', '2023-05-27', '2023-11-28', 16);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Ukraine', 'Emerald green tree boa', '2023-04-13', '2023-09-09', 14);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('China', 'Asian openbill', '2023-06-25', '2023-12-01', 63);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('United States', 'Vulture, king', '2023-04-09', '2023-12-03', 37);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('China', 'Lion, mountain', '2023-05-28', '2023-10-24', 22);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Belarus', 'Bear, polar', '2023-07-13', '2023-12-02', 23);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Portugal', 'Lion, mountain', '2023-07-13', '2023-12-25', 33);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('China', 'Lynx, african', '2023-05-14', '2023-07-04', 45);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Greece', 'Blue catfish', '2023-04-06', '2023-10-20', 12);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('United States', 'Grey mouse lemur', '2023-05-12', '2023-08-27', 13);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('China', 'Lion, mountain', '2023-04-18', '2023-09-01', 33);
+insert into resources (region, resource_name, start_date, end_date, resource_quote) values ('Sweden', 'Bear, polar', '2023-08-04', '2023-10-04', 44);
 
 
 

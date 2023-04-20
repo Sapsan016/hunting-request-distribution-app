@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import ru.gorbunov.model.ResourceStatus;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
@@ -23,10 +22,6 @@ public class AddResourceDto {
 
     @NotNull
     String name;
-
-
-    @NotNull
-    ResourceStatus status;
 
     @Future
     @NotNull
