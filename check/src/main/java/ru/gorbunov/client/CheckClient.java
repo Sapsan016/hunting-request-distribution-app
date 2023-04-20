@@ -3,16 +3,12 @@ package ru.gorbunov.client;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import reactor.core.scheduler.Schedulers;
 import ru.gorbunov.dto.RequestDto;
 import ru.gorbunov.dto.ResourceDto;
 
-import java.nio.file.Path;
-import java.util.logging.Logger;
 
 @Component
 public class CheckClient {
@@ -68,7 +64,7 @@ public class CheckClient {
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .onStatus(HttpStatus::isError, response -> Mono.error(new IllegalStateException(
-                        String.format("Failed! %s", resourceId)
+                        String.format("Resource with ID = %s, is already granted to the requester", resourceId)
                 )))
                 .bodyToMono(Void.class)
                 .block();
