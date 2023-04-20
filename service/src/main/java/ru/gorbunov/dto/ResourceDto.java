@@ -19,8 +19,6 @@ public class ResourceDto {
 
     String name;
 
-    String status;
-
     LocalDate start;
 
     LocalDate end;

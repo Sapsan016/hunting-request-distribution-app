@@ -42,12 +42,11 @@ public class ResourceController {
     @GetMapping
     public List<ResourceDto> getResources(@RequestParam(required = false, defaultValue = "") Long[] ids,
                                   @RequestParam(defaultValue = "0") Integer from,
-                                  @RequestParam(defaultValue = "10") Integer size,
-                                  @RequestParam(defaultValue = "") String status) {
-        log.info("ResourceController: Get resources with IDs : {}, skip: {}, list size: {}, status: {}",
-                Arrays.toString(ids), from, size, status);
+                                  @RequestParam(defaultValue = "10") Integer size) {
+        log.info("ResourceController: Get resources with IDs : {}, skip: {}, list size: {}",
+                Arrays.toString(ids), from, size);
 
-        return service.getResources(ids, from, size, status)
+        return service.getResources(ids, from, size)
                 .stream()
                 .map(ResourceMapper::toDto)
                 .collect(Collectors.toList());
