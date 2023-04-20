@@ -1,6 +1,5 @@
 package ru.gorbunov.client;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -35,7 +34,7 @@ public class CheckClient {
     }
 
     public void updateResource(ResourceDto resourceDto) {
-         webClient.patch()
+        webClient.patch()
                 .uri("/resources/check/" + resourceDto.getId())
                 .accept(MediaType.APPLICATION_JSON)
                 .body(Mono.just(resourceDto), ResourceDto.class)
@@ -53,6 +52,4 @@ public class CheckClient {
                 .bodyToMono(RequestDto.class)
                 .block();
     }
-
-
 }

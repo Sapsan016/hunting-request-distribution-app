@@ -25,12 +25,12 @@ public class CheckController {
     @NonFinal
     boolean checkInProgress = true;
 
-    @NonFinal
-    List<RequestDto> checkedRequests = new ArrayList<>();
+    List<RequestDto> checkedRequests;
 
     public CheckController(CheckService checkService, CheckClient client) {
         this.service = checkService;
         this.client = client;
+        this.checkedRequests = new ArrayList<>();
     }
 
     @GetMapping("/start")
@@ -39,12 +39,15 @@ public class CheckController {
         checkInProgress = true;
         while (checkInProgress) {
             List<RequestDto> requestDtoList = client.getRequest().collectList().block();
-            if (requestDtoList != null) {
+            if (!requestDtoList.isEmpty()) {
                 RequestDto request = requestDtoList.get(0);
                 ResourceDto resource = client.getResource(request.getResource().getId());
                 log.info("CheckController: Request to check request: {} to resource: {}", request, resource);
                 service.checkRequest(request, resource);
                 checkedRequests.add(request);
+            }
+            else {
+                return checkedRequests;
             }
         }
         return checkedRequests;

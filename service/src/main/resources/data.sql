@@ -1,5 +1,6 @@
 delete from resources;
 delete from requests;
+delete from resource_requesters;
 
 ALTER TABLE resources ALTER COLUMN resource_id RESTART WITH 1;
 ALTER TABLE requests ALTER COLUMN request_id RESTART WITH 1;
