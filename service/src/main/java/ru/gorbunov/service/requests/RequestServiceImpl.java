@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.gorbunov.dto.AddRequestDto;
+import ru.gorbunov.dto.RequestDto;
 import ru.gorbunov.dto.mapper.RequestMapper;
 import ru.gorbunov.model.Request;
 import ru.gorbunov.model.Resource;
@@ -85,6 +86,15 @@ public class RequestServiceImpl implements RequestService {
         Request requestToRemove = getRequestById(requestId);
         requestRepository.delete(requestToRemove);
         log.info("Removed request with ID = {}", requestId);
+    }
+
+    @Override
+    public Request updateCheckedRequest(RequestDto requestDto) {
+        Request requestToUpdate = getRequestById(requestDto.getId());
+        requestToUpdate.setStatus(requestDto.getStatus());
+        requestRepository.save(requestToUpdate);
+        log.info("Updated request with ID = {}", requestDto.getId());
+        return requestToUpdate;
     }
 
     private void checkUpdate(Request requestToUpdate, AddRequestDto addRequestDto) {

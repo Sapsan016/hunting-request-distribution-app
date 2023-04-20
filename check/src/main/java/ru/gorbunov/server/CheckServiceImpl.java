@@ -32,15 +32,19 @@ public class CheckServiceImpl implements CheckService {
             request.setStatus(String.valueOf(RequestStatus.ACCEPTED));
             resource.setQuote(resource.getQuote() - request.getQuantity());
             client.updateResource(resource);
+            log.info("CheckService: Resource with ID = {} checked", resource.getId());
             request.setResource(ResourceMapper.toResourceFromDto(resource));
+            client.updateRequest(request);
+            log.info("CheckService: Request with ID = {} checked", request.getId());
+
             //add save updated request
 
             //add data to resource requesters
             return request;
         }
         request.setStatus(String.valueOf(RequestStatus.DECLINED));
-
-
+        client.updateRequest(request);
+        log.info("CheckService: Request with ID = {} checked", request.getId());
         return request;
     }
 }

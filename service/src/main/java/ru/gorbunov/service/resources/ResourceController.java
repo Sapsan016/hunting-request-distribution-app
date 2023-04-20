@@ -68,7 +68,8 @@ public class ResourceController {
     @PatchMapping("/check/{resourceId}")
     public ResourceDto updateCheckResource(@RequestBody ResourceDto resourceDto,
                                       @PathVariable Long resourceId) {
-        log.info("ResourceController: Update resource with ID = {}, new data: {}", resourceId, resourceDto.toString());
+        log.info("ResourceController: Update checked resource with ID = {}, new data: {}",
+                resourceId, resourceDto.toString());
         AddResourceDto addResourceDto = ResourceMapper.toAddDto(resourceDto);
         return ResourceMapper.toDto(service.updateResource(resourceId, addResourceDto));
     }
