@@ -22,8 +22,11 @@ public class ResourceController {
 
     ResourceService service;
 
-    public ResourceController(ResourceService service) {
+    RequestersDAO requestersDAO;
+
+    public ResourceController(ResourceService service, RequestersDAO requestersDAO) {
         this.service = service;
+        this.requestersDAO = requestersDAO;
     }
 
     @PostMapping
@@ -71,6 +74,15 @@ public class ResourceController {
                 resourceId, resourceDto.toString());
         AddResourceDto addResourceDto = ResourceMapper.toAddDto(resourceDto);
         return ResourceMapper.toDto(service.updateResource(resourceId, addResourceDto));
+    }
+
+    @PostMapping("/requester/{resourceId}")
+    public void addRequester(@PathVariable Long resourceId,
+                             @RequestParam Long ticketSerialNumber,
+                             @RequestParam Long ticketNumber) {
+        log.info("ResourceController: Adding requester to resource with ID = {}", resourceId);
+        requestersDAO.addNewRequester(resourceId, ticketSerialNumber, ticketNumber);
+
     }
 
 }

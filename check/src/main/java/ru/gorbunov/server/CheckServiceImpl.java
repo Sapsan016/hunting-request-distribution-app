@@ -10,7 +10,6 @@ import ru.gorbunov.dto.ResourceDto;
 import ru.gorbunov.dto.mapper.ResourceMapper;
 import ru.gorbunov.model.RequestStatus;
 
-import java.util.List;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -31,26 +30,32 @@ public class CheckServiceImpl implements CheckService {
         if (request.getQuantity() <= resource.getQuote() &&
                 request.getCreated().isAfter(resource.getStart().atStartOfDay()) &&
                 request.getCreated().isBefore(resource.getEnd().atStartOfDay())) {
+
+            try {
+                client.addRequester(resource.getId(), request.getTicketSerialNumber(), request.getTicketNumber());
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+                request.setStatus(String.valueOf(RequestStatus.DECLINED));
+                client.updateRequest(request);
+                log.info("CheckService: Request with ID = {} declined", request.getId());
+                return request;
+            }
+
             request.setStatus(String.valueOf(RequestStatus.ACCEPTED));
             resource.setQuote(resource.getQuote() - request.getQuantity());
             client.updateResource(resource);
-            log.info("CheckService: Resource with ID = {} checked", resource.getId());
+            log.info("CheckService: Resource with ID = {} granted", resource.getId());
             request.setResource(ResourceMapper.toResourceFromDto(resource));
             client.updateRequest(request);
-            log.info("CheckService: Request with ID = {} checked", request.getId());
+            log.info("CheckService: Request with ID = {} accepted", request.getId());
 
-
-            //add data to resource requesters
             return request;
         }
         request.setStatus(String.valueOf(RequestStatus.DECLINED));
         client.updateRequest(request);
-        log.info("CheckService: Request with ID = {} checked", request.getId());
+        log.info("CheckService: Request with ID = {} declined", request.getId());
         return request;
     }
-
-
-
 
 
 }

@@ -53,7 +53,6 @@ public class CheckController {
         return checkedRequests;
     }
 
-
     @GetMapping("/stop")
     public List<RequestDto> stopChecks() {
         log.info("CheckController: Stopping checks");
