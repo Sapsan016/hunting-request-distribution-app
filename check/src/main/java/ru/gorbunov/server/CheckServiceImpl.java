@@ -10,6 +10,8 @@ import ru.gorbunov.dto.ResourceDto;
 import ru.gorbunov.dto.mapper.ResourceMapper;
 import ru.gorbunov.model.RequestStatus;
 
+import java.util.List;
+
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @Slf4j
@@ -37,7 +39,6 @@ public class CheckServiceImpl implements CheckService {
             client.updateRequest(request);
             log.info("CheckService: Request with ID = {} checked", request.getId());
 
-            //add save updated request
 
             //add data to resource requesters
             return request;
@@ -47,4 +48,9 @@ public class CheckServiceImpl implements CheckService {
         log.info("CheckService: Request with ID = {} checked", request.getId());
         return request;
     }
+
+
+
+
+
 }
