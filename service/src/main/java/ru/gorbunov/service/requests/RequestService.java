@@ -1,6 +1,7 @@
 package ru.gorbunov.service.requests;
 
 import ru.gorbunov.dto.AddRequestDto;
+import ru.gorbunov.dto.RequestDto;
 import ru.gorbunov.model.Request;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface RequestService {
     Request updateRequest(Long requestId, AddRequestDto addRequestDto);
 
     void removeRequest(Long requestId);
+
+    Request updateCheckedRequest(RequestDto requestDto);
 }

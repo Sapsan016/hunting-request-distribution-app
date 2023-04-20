@@ -71,10 +71,10 @@ public class RequestController {
         service.removeRequest(requestId);
     }
 
-//    @GetMapping("/start")
-//    public void startChecks() {
-//        client.checkRequest(getRequests(new Long[] {}, 0, Integer.MAX_VALUE, ""));
-//
-//    }
+    @PatchMapping("/check")
+    public RequestDto updateCheckRequest(@RequestBody RequestDto requestDto) {
+        log.info("RequestController: Update request with ID = {}, new data: {}", requestDto.getId(), requestDto);
+        return RequestMapper.toDto(service.updateCheckedRequest(requestDto));
+    }
 
 }

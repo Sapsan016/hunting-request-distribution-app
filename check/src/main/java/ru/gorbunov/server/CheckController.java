@@ -31,23 +31,8 @@ public class CheckController {
         List<RequestDto> requestDtoList = client.getRequest().collectList().block();
         RequestDto request = requestDtoList.get(0);
         ResourceDto resource = client.getResource(request.getResource().getId());
-
-      return check(request, resource);
-
-    }
-
-//    @PatchMapping()
-//    public List<RequestDto> checkRequests(@RequestBody List<RequestDto> requestDtoList) {
-//        log.info("CheckController: Request to check requests with IDs = {} ", requestDtoList.toString());
-//        return service.checkRequests(requestDtoList);
-//    }
-
-    @PatchMapping
-    public RequestDto check(@RequestBody RequestDto request, ResourceDto resource) {
         log.info("CheckController: Request to check request: {} to resource: {}", request, resource);
-        return service.checkRequest(request, resource);
+      return service.checkRequest(request, resource);
+
     }
-
-
-
 }
