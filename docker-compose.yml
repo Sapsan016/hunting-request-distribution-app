@@ -1,0 +1,43 @@
+version: '3.1'
+services:
+
+  check:
+    build: check
+    image: check
+    container_name: check-container
+    ports:
+      - "9090:9090"
+    depends_on:
+      - service
+
+    environment:
+      - SERVICE_URL=http://service:8080
+
+
+  hunt-db:
+    image: postgres:14-alpine
+    container_name: hunt-db-container
+    volumes:
+      - /var/lib/postgresql/data/
+    ports:
+      - "6541:5432"
+    environment:
+      - POSTGRES_DB=hunt
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=CHS2t1062
+
+
+  service:
+    build: service
+    image: service
+    container_name: service-container
+    ports:
+      - "8080:8080"
+    depends_on:
+      - hunt-db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://hunt-db:5432/hunt
+
+
+
+
