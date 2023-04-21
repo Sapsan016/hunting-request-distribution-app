@@ -63,6 +63,7 @@ public class ResourceController {
     }
 
     @DeleteMapping("/{resourceId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeResource(@PathVariable Long resourceId) {
         log.info("ResourceController: Remove resource with ID = {}", resourceId);
         service.removeResource(resourceId);

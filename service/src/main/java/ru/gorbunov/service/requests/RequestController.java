@@ -61,6 +61,7 @@ public class RequestController {
     }
 
     @DeleteMapping("/{requestId}")
+    @ResponseStatus(HttpStatus.CREATED)
     public void removeResource(@PathVariable Long requestId) {
         log.info("RequestController: Remove request with ID = {}", requestId);
         service.removeRequest(requestId);
