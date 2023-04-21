@@ -1,0 +1,589 @@
+{
+	"info": {
+		"_postman_id": "42d5ac84-cb3c-48ed-b55f-5887fe032d96",
+		"name": "Hunting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24061076"
+	},
+	"item": [
+		{
+			"name": "Add new resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+							"});\r",
+							"pm.test(\"Test create new resource\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(21);\r",
+							"    pm.expect(jsonData.name).to.eql('Cat');\r",
+							"    pm.expect(jsonData.start).to.eql('2023-04-22');\r",
+							"    pm.expect(jsonData.end).to.eql('2023-06-08');\r",
+							"    pm.expect(jsonData.quote).to.eql(19);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"region\": \"China\",\r\n  \"name\": \"Cat\",\r\n  \"quantity\": 69,\r\n  \"status\": \"OPEN\",\r\n  \"start\": \"2023-04-22\",\r\n  \"end\": \"2023-06-08\",\r\n  \"quote\": 19\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resources",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get resources",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"pm.test(\"Test get resource list\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(10)\r",
+							"    pm.expect(jsonData[0].id).to.eql(1);\r",
+							"    });\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resources",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resources"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update created resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"pm.test(\"Test update created resource\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(21);\r",
+							"    pm.expect(jsonData.name).to.eql('Cat');\r",
+							"    pm.expect(jsonData.start).to.eql('2023-04-15');\r",
+							"    pm.expect(jsonData.end).to.eql('2023-06-08');\r",
+							"    pm.expect(jsonData.quote).to.eql(19);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \r\n  \"start\": \"2023-04-15\"\r\n  \r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/resources/21",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resources",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add new request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+							"});\r",
+							"pm.test(\"Test create new request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(112);\r",
+							"    pm.expect(jsonData.surname).to.eql('Meneer');\r",
+							"    pm.expect(jsonData.name).to.eql('Franz');\r",
+							"    pm.expect(jsonData.middleName).to.eql('Mile');\r",
+							"    pm.expect(jsonData.ticketSerialNumber).to.eql(6609);\r",
+							"    pm.expect(jsonData.ticketNumber).to.eql(9350613);\r",
+							"    pm.expect(jsonData.resource.id, '\"resource.id\" field').to.eql(21);\r",
+							"    pm.expect(jsonData.quantity).to.eql(8);\r",
+							"    pm.expect(jsonData.status).to.eql('PENDING');\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"surname\": \"Meneer\",\r\n  \"name\": \"Franz\",\r\n  \"middleName\": \"Mile\",\r\n  \"type\": \"MASS\",\r\n  \"ticketSerialNumber\": 6609,\r\n  \"ticketNumber\": 9350613,\r\n  \"resourceId\": 21,\r\n  \"quantity\" : 8\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/requests",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get empty DECLINED requests list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"pm.test(\"Test get empty list user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(0)});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/requests?status=DECLINED",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"requests"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "DECLINED"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check requests",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"pm.test(\"Test get empty list user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(112)});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/check/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"check",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get empty PENDING requests list",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"pm.test(\"Test get empty list user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(0)});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/requests?status=PENDING",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"requests"
+					],
+					"query": [
+						{
+							"key": "status",
+							"value": "PENDING"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add request after first check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201]);\r",
+							"});\r",
+							"pm.test(\"Test create new request\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(113);\r",
+							"    pm.expect(jsonData.surname).to.eql('Gordon');\r",
+							"    pm.expect(jsonData.name).to.eql('John');\r",
+							"    pm.expect(jsonData.middleName).to.eql('James');\r",
+							"    pm.expect(jsonData.ticketSerialNumber).to.eql(7791);\r",
+							"    pm.expect(jsonData.ticketNumber).to.eql(1234567);\r",
+							"    pm.expect(jsonData.resource.id, '\"resource.id\" field').to.eql(21);\r",
+							"    pm.expect(jsonData.quantity).to.eql(2);\r",
+							"    pm.expect(jsonData.status).to.eql('PENDING');\r",
+							"    \r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"surname\": \"Gordon\",\r\n  \"name\": \"John\",\r\n  \"middleName\": \"James\",\r\n  \"type\": \"DRAW\",\r\n  \"ticketSerialNumber\": 7791,\r\n  \"ticketNumber\": 1234567,\r\n  \"resourceId\": 21,\r\n  \"quantity\" : 2\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/requests",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check new request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"pm.test(\"Test get full requests list\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.length).to.eql(113)\r",
+							"    });\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/check/start",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"check",
+						"start"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get request after check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"pm.test(\"Test checked new request\", function () {\r",
+							"var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(113);\r",
+							"    pm.expect(jsonData.surname).to.eql('Gordon');\r",
+							"    pm.expect(jsonData.name).to.eql('John');\r",
+							"    pm.expect(jsonData.middleName).to.eql('James');\r",
+							"    pm.expect(jsonData.ticketSerialNumber).to.eql(7791);\r",
+							"    pm.expect(jsonData.ticketNumber).to.eql(1234567);\r",
+							"    pm.expect(jsonData.resource.id, '\"resource.id\" field').to.eql(21);\r",
+							"    pm.expect(jsonData.quantity).to.eql(2);\r",
+							"    pm.expect(jsonData.status).to.eql('ACCEPTED');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/requests/113",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"requests",
+						"113"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add request to wrong resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([404]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"surname\": \"Jordan\",\r\n  \"name\": \"Michael\",\r\n  \"middleName\": \"Adam\",\r\n  \"type\": \"DRAW\",\r\n  \"ticketSerialNumber\": 6666,\r\n  \"ticketNumber\": 7654321,\r\n  \"resourceId\": 999,\r\n  \"quantity\" : 100\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/requests",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"requests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([204]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resources/21",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resources",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove removed resource",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([404]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/resources/21",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"resources",
+						"21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stop checks",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/check/stop",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"check",
+						"stop"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080"
+		}
+	]
+}
