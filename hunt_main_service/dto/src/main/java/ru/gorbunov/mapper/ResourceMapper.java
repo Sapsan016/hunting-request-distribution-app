@@ -1,8 +1,8 @@
-package ru.gorbunov.dto.mapper;
+package ru.gorbunov.mapper;
 
-import ru.gorbunov.dto.model.AddResourceDto;
-import ru.gorbunov.dto.model.Resource;
-import ru.gorbunov.dto.model.ResourceDto;
+import ru.gorbunov.dto.AddResourceDto;
+import ru.gorbunov.model.Resource;
+import ru.gorbunov.dto.ResourceDto;
 
 public class ResourceMapper {
     public static Resource toResource(AddResourceDto addResourceDto) {

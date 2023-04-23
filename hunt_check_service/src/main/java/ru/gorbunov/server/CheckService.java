@@ -1,7 +1,7 @@
 package ru.gorbunov.server;
 
-import ru.gorbunov.dto.model.RequestDto;
-import ru.gorbunov.dto.model.ResourceDto;
+import ru.gorbunov.dto.RequestDto;
+import ru.gorbunov.dto.ResourceDto;
 
 
 public interface CheckService {

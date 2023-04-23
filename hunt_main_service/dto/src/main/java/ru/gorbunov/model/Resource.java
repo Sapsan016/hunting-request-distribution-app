@@ -1,4 +1,4 @@
-package ru.gorbunov.dto.model;
+package ru.gorbunov.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

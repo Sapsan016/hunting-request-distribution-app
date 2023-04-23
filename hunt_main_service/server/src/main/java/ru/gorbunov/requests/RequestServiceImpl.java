@@ -4,11 +4,11 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.gorbunov.dto.mapper.RequestMapper;
-import ru.gorbunov.dto.model.AddRequestDto;
-import ru.gorbunov.dto.model.Request;
-import ru.gorbunov.dto.model.RequestDto;
-import ru.gorbunov.dto.model.Resource;
+import ru.gorbunov.mapper.RequestMapper;
+import ru.gorbunov.dto.AddRequestDto;
+import ru.gorbunov.model.Request;
+import ru.gorbunov.dto.RequestDto;
+import ru.gorbunov.model.Resource;
 import ru.gorbunov.exception.ObjectNotFoundException;
 import ru.gorbunov.resources.ResourceService;
 

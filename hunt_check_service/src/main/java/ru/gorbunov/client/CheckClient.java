@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-import ru.gorbunov.dto.model.RequestDto;
-import ru.gorbunov.dto.model.ResourceDto;
+import ru.gorbunov.dto.RequestDto;
+import ru.gorbunov.dto.ResourceDto;
 
 
 @Component
