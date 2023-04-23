@@ -1,54 +1,56 @@
 package ru.gorbunov.resources;
 
 
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import org.junit.jupiter.api.AfterEach;
+import lombok.experimental.FieldDefaults;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 import ru.gorbunov.dto.AddResourceDto;
 import ru.gorbunov.exception.ObjectNotFoundException;
 import ru.gorbunov.model.Resource;
 
-import javax.persistence.Column;
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-//@AutoConfigureTestDatabase()
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class ResourceServiceImplTest {
-  //  private final JdbcTemplate jdbcTemplate;
 
-    private final ResourceServiceImpl resourceService;
+    ResourceServiceImpl resourceService;
+
+    static String REGION = "Moscow";
+
+    static String NAME = "Gray hare";
+
+    static LocalDate START = LocalDate.now().plusDays(1);
+
+    static LocalDate END = LocalDate.now().plusMonths(3);
+
+    static Integer QUOTE = 100;
+
+    static Long[] IDS = {1L, 2L, 3L};
+
+    static Long[] EMPTY = {};
 
 
-    private AddResourceDto getResourceDto() {
+    private AddResourceDto getResourceDto(String region, String name, LocalDate start, LocalDate end, Integer quote) {
         return AddResourceDto.builder()
-                .region("Region")
-                .name("TestResource")
-                .start(LocalDate.now().plusDays(1))
-                .end(LocalDate.now().plusMonths(3))
-                .quote(10)
+                .region(region)
+                .name(name)
+                .start(start)
+                .end(end)
+                .quote(quote)
                 .build();
     }
 
-//    @AfterEach
-//    void afterEach() {
-//        jdbcTemplate.update("DELETE FROM resources");
-//        jdbcTemplate.update("ALTER TABLE resources ALTER COLUMN FILM_ID RESTART WITH 1");
-//    }
-
     @Test
     void testSaveAndGetResourceAndDelete() {
-        AddResourceDto testResourceDto = getResourceDto();
+        AddResourceDto testResourceDto = getResourceDto(REGION, NAME, START, END, QUOTE);
         Resource savedResource = resourceService.addNewResource(testResourceDto);
         assertEquals(21L, savedResource.getId());
         assertEquals(testResourceDto.getRegion(), savedResource.getRegion());
@@ -58,103 +60,37 @@ class ResourceServiceImplTest {
     }
 
 
-//    @Test
-//    void testUpdateFilm() {
-//        Film film = getFilm();
-//        filmDbStorage.add(film);
-//        film.setName("XXX");
-//        film.setDuration(3333);
-//        filmDbStorage.update(film);
-//        assertEquals(film, filmDbStorage.get(1));
-//    }
-//
-//    @Test
-//    void testContainsIdFilm() {
-//        assertFalse(filmDbStorage.containsId(9999),
-//                "Фильм с id " + 9999 + " не найден.");
-//    }
-//
-//    @Test
-//    void testFindAllFilms() {
-//        Film film1 = getFilm();
-//        Film film2 = getFilm();
-//        film2.setName("Ololololo");
-//        filmDbStorage.add(film1);
-//        filmDbStorage.add(film2);
-//        List<Film> films = List.of(film1, film2);
-//        assertEquals(films, filmDbStorage.getFilms());
-//    }
-//
-//
-//    @Test
-//    void testSaveLikeAndDelete() {
-//        userDbStorage.add(getUser("kot@yandex.ru", "login"));
-//        userDbStorage.add(getUser("kot2@yandex.ru", "login2"));
-//        filmDbStorage.add(getFilm());
-//        likesDAO.putLike(1, 1);
-//        likesDAO.putLike(1, 2);
-//        assertEquals(2, filmDbStorage.get(1).getRate());
-//        likesDAO.deleteLike(1, 1);
-//        assertEquals(1, filmDbStorage.get(1).getRate());
-//    }
-//
-//    @Test
-//    void testSaveLike() {
-//        filmDbStorage.add(getFilm());
-//        assertThrows(ObjectNotFoundException.class, () -> likesDAO.deleteLike(1, 2),
-//                "Пользователь с id=-2 не ставил лайк фильму с id=1");
-//    }
-//
-//    @Test
-//    void testFindEmptyPopularFilms() {
-//        assertEquals(new ArrayList<>(), filmDbStorage.getPopular(5, null, null));
-//    }
-//
-//    @Test
-//    void testFindOnePopularFilm() {
-//        userDbStorage.add(getUser("kot@yandex.ru", "login"));
-//        userDbStorage.add(getUser("kot2@yandex.ru", "login2"));
-//        filmDbStorage.add(getFilm());
-//        filmDbStorage.add(getFilm());
-//        likesDAO.putLike(1, 1);
-//        likesDAO.putLike(1, 2);
-//        likesDAO.putLike(2, 2);
-//        assertEquals(1, filmDbStorage.getPopular(1, null, null).get(0).getId());
-//    }
-//
-//
-//    @Test
-//    void testUpdateFilmWithGenre() {
-//        Film film = getFilm();
-//        filmDbStorage.add(film);
-//        film.setGenres(List.of(Genre.builder().id(2).name("Драма").build()));
-//        filmDbStorage.update(film);
-//        film.setGenres(null);
-//        genreDAO.findGenresForFilm(film);
-//        assertEquals(List.of(Genre.builder().id(2).name("Драма").build()), film.getGenres());
-//    }
-//
-//    @Test
-//    void testFindFilmWithThreeGenres() {
-//        Film film = getFilm();
-//        List<Genre> genres = List.of(Genre.builder().id(1).name("Комедия").build(),
-//                Genre.builder().id(2).name("Драма").build(), Genre.builder().id(3).name("Мультфильм").build());
-//        film.setGenres(genres);
-//        filmDbStorage.add(film);
-//        film.setGenres(null);
-//        genreDAO.findGenresForFilm(film);
-//        assertEquals(genres, film.getGenres());
-//    }
-//
-//    @Test
-//    void testUpdateFilmWithRepeatedGenres() {
-//        Film film = getFilm();
-//        filmDbStorage.add(film);
-//        film.setGenres(List.of(Genre.builder().id(1).name("Комедия").build(),
-//                Genre.builder().id(2).name("Драма").build(), Genre.builder().id(1).name("Комедия").build()));
-//        filmDbStorage.update(film);
-//        film.setGenres(List.of(Genre.builder().id(1).name("Комедия").build(),
-//                Genre.builder().id(2).name("Драма").build()));
-//        assertEquals(film, filmDbStorage.get(1));
-//    }
+    @Test
+    void testUpdateResource() {
+        AddResourceDto testResourceDto = getResourceDto(null, null, null, null, QUOTE);
+        Resource resourceToUpdate = resourceService.getResourceById(20L);
+        Resource updatedResource = resourceService.updateResource(20L, testResourceDto);
+        assertEquals(100, updatedResource.getQuote());
+        assertEquals(resourceToUpdate.getName(), resourceToUpdate.getName());
+    }
+
+    @Test
+    void testUpdateFullResource() {
+        AddResourceDto testResourceDto = getResourceDto(REGION, NAME, START, END, QUOTE);
+        Resource updatedResource = resourceService.updateResource(20L, testResourceDto);
+        assertEquals(REGION, updatedResource.getRegion());
+        assertEquals(NAME, updatedResource.getName());
+        assertEquals(START, updatedResource.getStart());
+        assertEquals(END, updatedResource.getEnd());
+    }
+
+    @Test
+    void testGetResourcesWithIds() {
+        List<Resource> resources = resourceService.getResources(IDS, 1, 1);
+        assertEquals(1, resources.size());
+        assertEquals(2L, resources.get(0).getId());
+    }
+
+    @Test
+    void testGetResources() {
+        List<Resource> resources = resourceService.getResources(EMPTY, 0, 2);
+        assertEquals(2, resources.size());
+        assertEquals(1L, resources.get(0).getId());
+        assertEquals(2L, resources.get(1).getId());
+    }
 }
