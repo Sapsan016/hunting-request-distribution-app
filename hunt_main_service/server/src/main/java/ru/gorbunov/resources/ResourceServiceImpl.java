@@ -4,9 +4,9 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import ru.gorbunov.dto.mapper.ResourceMapper;
-import ru.gorbunov.dto.model.AddResourceDto;
-import ru.gorbunov.dto.model.Resource;
+import ru.gorbunov.mapper.ResourceMapper;
+import ru.gorbunov.dto.AddResourceDto;
+import ru.gorbunov.model.Resource;
 import ru.gorbunov.exception.ObjectNotFoundException;
 
 import java.util.Arrays;

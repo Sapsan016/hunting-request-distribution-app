@@ -1,4 +1,4 @@
-package ru.gorbunov.dto.model;
+package ru.gorbunov.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AccessLevel;

@@ -2,7 +2,7 @@ package ru.gorbunov.requests;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import ru.gorbunov.dto.model.Request;
+import ru.gorbunov.model.Request;
 
 import java.util.List;
 

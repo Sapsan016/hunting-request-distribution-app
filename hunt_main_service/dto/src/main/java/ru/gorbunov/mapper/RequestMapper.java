@@ -1,9 +1,9 @@
-package ru.gorbunov.dto.mapper;
+package ru.gorbunov.mapper;
 
-import ru.gorbunov.dto.model.AddRequestDto;
-import ru.gorbunov.dto.model.Request;
-import ru.gorbunov.dto.model.RequestDto;
-import ru.gorbunov.dto.model.RequestStatus;
+import ru.gorbunov.dto.AddRequestDto;
+import ru.gorbunov.model.Request;
+import ru.gorbunov.dto.RequestDto;
+import ru.gorbunov.model.RequestStatus;
 
 import java.time.LocalDateTime;
 

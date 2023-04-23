@@ -1,7 +1,7 @@
 package ru.gorbunov.resources;
 
-import ru.gorbunov.dto.model.AddResourceDto;
-import ru.gorbunov.dto.model.Resource;
+import ru.gorbunov.dto.AddResourceDto;
+import ru.gorbunov.model.Resource;
 
 import java.util.List;
 

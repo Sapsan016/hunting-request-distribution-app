@@ -1,4 +1,4 @@
-package ru.gorbunov.dto.model;
+package ru.gorbunov.model;
 
 public enum RequestType {
 

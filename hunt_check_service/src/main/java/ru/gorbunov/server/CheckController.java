@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.gorbunov.client.CheckClient;
-import ru.gorbunov.dto.model.RequestDto;
-import ru.gorbunov.dto.model.ResourceDto;
+import ru.gorbunov.dto.RequestDto;
+import ru.gorbunov.dto.ResourceDto;
 
 import java.util.ArrayList;
 import java.util.List;

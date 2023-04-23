@@ -5,9 +5,9 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.gorbunov.dto.mapper.RequestMapper;
-import ru.gorbunov.dto.model.AddRequestDto;
-import ru.gorbunov.dto.model.RequestDto;
+import ru.gorbunov.mapper.RequestMapper;
+import ru.gorbunov.dto.AddRequestDto;
+import ru.gorbunov.dto.RequestDto;
 
 import javax.validation.Valid;
 import java.util.Arrays;
