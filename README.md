@@ -1,4 +1,4 @@
-# test_task_foxcom
+# Hunting
 Repository for a test task for Foxcom
 
 Мультимодульное Web Приложение hunting-request-distribution-app позволяет сохранять и загружать охотничьи ресурсы и заявки на получение этих ресурсов, а также автоматически проверять заявки и одобрять или отклонять их.
