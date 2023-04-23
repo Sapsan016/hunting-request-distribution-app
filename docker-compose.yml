@@ -1,17 +1,19 @@
 version: '3.1'
 services:
 
-  check:
-    build: check
-    image: check
-    container_name: check-container
+  check-service:
+    build: hunt_check_service
+    image: check-service
+    container_name: check-service-container
     ports:
       - "9090:9090"
     depends_on:
-      - service
+      - main-service
+      - hunt-db
 
     environment:
-      - SERVICE_URL=http://service:8080
+      - SERVICE_URL=http://main-service:8080
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://hunt-db:5432/hunt
 
 
   hunt-db:
@@ -27,17 +29,16 @@ services:
       - POSTGRES_PASSWORD=CHS2t1062
 
 
-  service:
-    build: service
-    image: service
-    container_name: service-container
+  main-service:
+    build: hunt_main_service/server
+    image: hunt-main-service
+    container_name: main-service-container
     ports:
       - "8080:8080"
     depends_on:
       - hunt-db
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://hunt-db:5432/hunt
-
 
 
 
