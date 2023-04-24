@@ -12,6 +12,6 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> getAllRequestsWithStatusFromSize(String status, Integer from, Integer size);
 
 
-    @Query(value = "SELECT * FROM requests offset ? LIMIT ?", nativeQuery = true)
+    @Query(value = "SELECT * FROM requests ORDER BY created offset ? LIMIT ?", nativeQuery = true)
     List<Request> getAllRequestsFromSize(Integer from, Integer size);
 }

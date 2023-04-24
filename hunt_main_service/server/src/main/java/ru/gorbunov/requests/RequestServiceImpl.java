@@ -12,7 +12,9 @@ import ru.gorbunov.model.Resource;
 import ru.gorbunov.exception.ObjectNotFoundException;
 import ru.gorbunov.resources.ResourceService;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,6 +61,7 @@ public class RequestServiceImpl implements RequestService {
         if (status.isBlank()) {
             log.info("Looking for requests with Ids: {}, skip: {}, size: {}", Arrays.toString(ids), from, size);
             return Arrays.stream(ids).map(this::getRequestById)
+                    .sorted(Comparator.comparing(Request::getCreated))
                     .skip(from)
                     .limit(size)
                     .collect(Collectors.toList());
@@ -105,11 +108,13 @@ public class RequestServiceImpl implements RequestService {
         if (addRequestDto.getMiddleName() != null)
             requestToUpdate.setMiddleName(addRequestDto.getMiddleName());
         if (addRequestDto.getType() != null)
-            requestToUpdate.setType(requestToUpdate.getType());
+            requestToUpdate.setType(addRequestDto.getType().toString());
         if (addRequestDto.getTicketSerialNumber() != null)
             requestToUpdate.setTicketSerialNumber(addRequestDto.getTicketSerialNumber());
         if (addRequestDto.getTicketNumber() != null)
             requestToUpdate.setTicketNumber(addRequestDto.getTicketNumber());
+        if(addRequestDto.getResourceId() != null)
+            requestToUpdate.setResource(resourceService.getResourceById(addRequestDto.getResourceId()));
         if (addRequestDto.getQuantity() != null)
             requestToUpdate.setQuantity(addRequestDto.getQuantity());
     }

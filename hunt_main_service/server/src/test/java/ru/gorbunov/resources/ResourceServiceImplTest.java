@@ -4,7 +4,6 @@ package ru.gorbunov.resources;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +51,8 @@ class ResourceServiceImplTest {
                 .quote(quote)
                 .build();
     }
+
+
 
     @Test
     void testSaveAndGetResourceAndDelete() {

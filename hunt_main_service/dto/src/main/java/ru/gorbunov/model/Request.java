@@ -48,4 +48,10 @@ public class Request {
 
     LocalDateTime created;
 
+    @Override
+    public String toString() {
+        return "Request{" +
+                "created=" + created +
+                '}';
+    }
 }
