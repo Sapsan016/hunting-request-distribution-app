@@ -9,17 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import ru.gorbunov.dto.AddRequestDto;
-import ru.gorbunov.dto.AddResourceDto;
-import ru.gorbunov.dto.RequestDto;
 import ru.gorbunov.exception.ObjectNotFoundException;
-import ru.gorbunov.mapper.RequestMapper;
 import ru.gorbunov.model.Request;
 import ru.gorbunov.model.RequestStatus;
 import ru.gorbunov.model.RequestType;
-import ru.gorbunov.model.Resource;
 
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
