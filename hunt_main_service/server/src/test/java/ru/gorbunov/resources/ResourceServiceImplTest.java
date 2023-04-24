@@ -4,9 +4,11 @@ package ru.gorbunov.resources;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import ru.gorbunov.dto.AddResourceDto;
 import ru.gorbunov.exception.ObjectNotFoundException;
 import ru.gorbunov.model.Resource;
@@ -37,6 +39,8 @@ class ResourceServiceImplTest {
 
     static Long[] EMPTY = {};
 
+    JdbcTemplate jdbcTemplate;
+
 
     private AddResourceDto getResourceDto(String region, String name, LocalDate start, LocalDate end, Integer quote) {
         return AddResourceDto.builder()
@@ -47,6 +51,8 @@ class ResourceServiceImplTest {
                 .quote(quote)
                 .build();
     }
+
+
 
     @Test
     void testSaveAndGetResourceAndDelete() {
@@ -92,5 +98,10 @@ class ResourceServiceImplTest {
         assertEquals(2, resources.size());
         assertEquals(1L, resources.get(0).getId());
         assertEquals(2L, resources.get(1).getId());
+    }
+
+    @AfterEach
+    void resetIds() {
+        jdbcTemplate.update("ALTER TABLE resources ALTER COLUMN resource_id RESTART WITH 21");
     }
 }
